@@ -115,11 +115,23 @@
         android:contentDescription="@string/option_send_files"
         android:src="@drawable/ic_attachment"
         app:layout_constraintBottom_toBottomOf="@id/sendButton"
-        app:layout_constraintEnd_toStartOf="@+id/composerEditTextOuterBorder"
+        app:layout_constraintEnd_toStartOf="@+id/cameraButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/sendButton"
         app:layout_goneMarginBottom="57dp"
         tools:ignore="MissingPrefix" />
+
+    <ImageButton
+        android:id="@+id/cameraButton"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_margin="1dp"
+        android:background="?android:attr/selectableItemBackground"
+        android:contentDescription="@string/option_send_files"
+        android:src="@drawable/ic_camera_plain"
+        app:layout_constraintBottom_toBottomOf="@id/sendButton"
+        app:layout_constraintStart_toEndOf="@id/attachmentButton"
+        app:layout_constraintTop_toTopOf="@id/sendButton" />
 
     <FrameLayout
         android:id="@+id/composerEditTextOuterBorder"
@@ -129,7 +141,7 @@
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/sendButton"
-        app:layout_constraintStart_toEndOf="@id/attachmentButton"
+        app:layout_constraintStart_toEndOf="@id/cameraButton"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginEnd="12dp" />
 

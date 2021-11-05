@@ -45,6 +45,7 @@ class TextComposerView @JvmOverloads constructor(
         fun onCloseRelatedMessage()
         fun onSendMessage(text: CharSequence)
         fun onAddAttachment()
+        fun onTakePhoto();
     }
 
     val views: ComposerLayoutBinding
@@ -85,6 +86,10 @@ class TextComposerView @JvmOverloads constructor(
 
         views.attachmentButton.setOnClickListener {
             callback?.onAddAttachment()
+        }
+
+        views.cameraButton.setOnClickListener {
+            callback?.onTakePhoto()
         }
     }
 

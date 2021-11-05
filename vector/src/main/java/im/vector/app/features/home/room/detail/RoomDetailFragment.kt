@@ -122,6 +122,7 @@ import im.vector.app.features.attachments.AttachmentsHelper
 import im.vector.app.features.attachments.ContactAttachment
 import im.vector.app.features.attachments.preview.AttachmentsPreviewActivity
 import im.vector.app.features.attachments.preview.AttachmentsPreviewArgs
+import im.vector.app.features.attachments.takephoto.TakePhotoView
 import im.vector.app.features.attachments.toGroupedContentAttachmentData
 import im.vector.app.features.call.SharedKnownCallsViewModel
 import im.vector.app.features.call.VectorCallActivity
@@ -254,6 +255,7 @@ class RoomDetailFragment @Inject constructor(
         TimelineEventController.Callback,
         VectorInviteView.Callback,
         AttachmentTypeSelectorView.Callback,
+        TakePhotoView.Callback,
         AttachmentsHelper.Callback,
         GalleryOrCameraDialogHelper.Listener,
         CurrentCallsView.Callback {
@@ -314,6 +316,7 @@ class RoomDetailFragment @Inject constructor(
     private lateinit var callActionsHandler: StartCallActionsHandler
 
     private lateinit var attachmentTypeSelector: AttachmentTypeSelectorView
+    private lateinit var takePhotoView: TakePhotoView
 
     private var lockSendButton = false
     private val currentCallsViewPresenter = CurrentCallsViewPresenter()
@@ -1337,6 +1340,16 @@ class RoomDetailFragment @Inject constructor(
 
             override fun onTextChanged(text: CharSequence) {
                 textComposerViewModel.handle(TextComposerAction.OnTextChanged(text))
+            }
+
+            override fun onTakePhoto() {
+                if(!::takePhotoView.isInitialized) {
+                    val activity = getActivity();
+                    takePhotoView = TakePhotoView(activity as Activity,this@RoomDetailFragment, vectorBaseActivity, vectorBaseActivity.layoutInflater, this@RoomDetailFragment)
+                }
+
+                takePhotoView.show(views.composerLayout.views.cameraButton, keyboardStateUtils.isKeyboardShowing)
+
             }
         }
     }
